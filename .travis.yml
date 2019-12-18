@@ -1,10 +1,13 @@
 services:
   - docker
 
-before_script: docker build -t test/example .
-
 env:
   - FOO=0
   - FOO=1
 
-script: docker run --rm test/example bash -c "echo $FOO & ls"
+jobs:
+  include:
+    - name: docker
+      script: docker build -t test/example .
+    - name: test
+      script: docker run --rm test/example bash -c "echo $FOO & ls"
