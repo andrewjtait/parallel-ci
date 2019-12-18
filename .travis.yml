@@ -1,8 +1,7 @@
-language:
-  - javascript
-
 services:
   - docker
+
+install: echo "skip"
 
 stages:
   - setup
