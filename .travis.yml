@@ -1,0 +1,11 @@
+services:
+  - docker
+`
+before_script: docker build -t test/example .
+
+env:
+  matrix:
+    - FOO=0
+    - FOO=1
+
+script: docker run --rm test/example bash -c "echo $FOO"
