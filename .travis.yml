@@ -1,6 +1,10 @@
 services:
   - docker
 
+stages:
+  - setup
+  - test
+
 cache:
   directories:
     - docker_images
@@ -17,3 +21,11 @@ env:
   - FOO=1
 
 script: docker run --rm test/example bash -c "echo $FOO & ls"
+
+jobs:
+  include:
+    - name: docker
+      stage: setup
+      script:
+        - docker load -i docker_images/images.tar || true
+        - docker build -t test/example .
