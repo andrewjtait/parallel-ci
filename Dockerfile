@@ -1,16 +1,15 @@
-FROM ruby:2.5.1-slim
-
-# RUN apt-get update
-# RUN apt-get install -y --force-yes build-essential wget git
-# RUN apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev git
-
-# RUN apt-get clean
-
-# RUN gem update --system
-RUN gem install bundler
+FROM ruby:2.6.3-slim
 
 ENV APP_HOME /usr/src/app
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
+
+RUN gem update --system
+RUN gem install bundler -v 2.0.1
+
+COPY ./Gemfile $APP_HOME
+COPY ./Gemfile.lock $APP_HOME
+
+RUN bundle install
 
 COPY . $APP_HOME
