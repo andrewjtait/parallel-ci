@@ -4,8 +4,10 @@ services:
 jobs:
   include:
     - name: docker
+      stage: setup
       script: docker build -t test/example .
     - name: test
+      stage: test
       script: docker run --rm test/example bash -c "echo $FOO & ls"
       env:
         - FOO=0
