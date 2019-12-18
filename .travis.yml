@@ -7,5 +7,6 @@ env:
   matrix:
     - FOO=0
     - FOO=1
+    - FOO=2
 
 script: docker run --rm test/example bash -c "echo $FOO"
