@@ -1,6 +1,6 @@
 services:
   - docker
-`
+
 before_script: docker build -t test/example .
 
 script: docker run --rm test/example bash -c "echo $FOO"
