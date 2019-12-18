@@ -7,4 +7,4 @@ env:
   - FOO=0
   - FOO=1
 
-script: docker run --rm test/example bash -c "echo $FOO"
+script: docker run --rm test/example bash -c "echo $FOO & ls"
