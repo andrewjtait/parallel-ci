@@ -3,4 +3,8 @@ services:
 
 before_script: docker build -t test/example .
 
+env:
+  - FOO=0
+  - FOO=1
+
 script: docker run --rm test/example bash -c "echo $FOO"
